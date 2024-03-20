@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">MarvelCharacters</string>
+    <string name="home">Home</string>
+    <string name="profile">Perfil</string>
+    <string name="rightAddress">La mejor aplicación para visualizar sus personajes.</string>
+    <string name="qulity">¡Ahora es muy fácil alcanzar la mejor calidad de visualización de tus personajes en la palma de tu mano!</string>
+    <string name="register">Registrar</string>
+    <string name="login">Login</string>
+    <string name="start">Comencemos</string>
+    <string name="goLogin">¡Vamos a ingresar!</string>
+    <string name="goNotAcount">¿No tienes una cuenta? Registro</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="goRegister">¡Vamos a registrarnos!</string>
+    <string name="haveAcount">¿Ya tienes una cuenta? ingresar</string>
+    <string name="name">Digite su nombre completo</string>
+    <string name="number_version">version 1.0</string>
+    <string name="regional">Regional</string>
+    <string name="settings">Ajustes</string>
+    <string name="logout">Salir</string>
+    <string name="digit_email">Digite su correo electronico</string>
+    <string name="character">Personajes</string>
+    <string name="name_character">Nombre del personaje</string>
+    <string name="search_characters">Buscar Personajes</string>
+    <string name="empty_title">No hay personajes en la base de datos</string>
+    <string name="add_character">Personajes agregados</string>
+    <string name="empty_wifi">No hay conexión a internet</string>
 </resources>
