@@ -38,6 +38,19 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCharacterFavorite"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/bottomGuideLine"
+            app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
+            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarCharacter"
+            tools:listitem="@layout/list_card_character" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/rightGuideLine"
             android:layout_width="match_parent"

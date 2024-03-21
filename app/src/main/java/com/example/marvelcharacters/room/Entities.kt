@@ -11,3 +11,15 @@ data class User(
     val username: String,
     val email: String,
 )
+
+@Entity(tableName = "favorite_characters")
+data class FavoriteCharacter(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val name: String,
+    val description: String,
+    val comics: String,
+    val series: String,
+    val stories: String,
+    val events: String,
+    val imageUrl: String
+)

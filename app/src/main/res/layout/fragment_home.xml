@@ -77,8 +77,35 @@
             app:layout_constraintBottom_toTopOf="@id/bottomGuideLine"
             app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/searchLayout"
+            app:layout_constraintTop_toBottomOf="@+id/reloadWifi"
             tools:listitem="@layout/list_card_character" />
+
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+            app:layout_constraintStart_toStartOf="@+id/toolbarCharacter"
+            app:layout_constraintTop_toTopOf="@+id/toolbarCharacter" />
+
+        <TextView
+            android:id="@+id/loadingCharacters"
+            style="@style/TextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/loading_characters"
+            android:layout_marginStart="30dp"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/loadingProgressBar" />
+
 
         <ImageView
             android:id="@+id/imageEmpty"
@@ -116,6 +143,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchLayout"
             app:layout_constraintVertical_bias="0.1" />
+
+        <ImageView
+            android:id="@+id/reloadWifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_reload"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
 
         <TextView
             android:id="@+id/txtWifi"

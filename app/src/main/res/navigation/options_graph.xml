@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.marvelcharacters.fragments.options.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailChracterFragment"
+            app:destination="@id/detailChracterFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -21,5 +25,32 @@
         android:name="com.example.marvelcharacters.fragments.options.FavoriteCharactersFragment"
         android:label="AddCharacterFragment"
         tools:layout="@layout/fragment_favorite_characters"/>
+    <fragment
+        android:id="@+id/detailChracterFragment"
+        android:name="com.example.marvelcharacters.fragments.options.DetailChracterFragment"
+        android:label="DetailChracterFragment"
+        tools:layout="@layout/fragment_detail_character">
+        <argument
+            android:name="name"
+            app:argType="string"/>
+        <argument
+            android:name="description"
+            app:argType="string"/>
+        <argument
+            android:name="commits"
+            app:argType="string"/>
+        <argument
+            android:name="series"
+            app:argType="string"/>
+        <argument
+            android:name="story"
+            app:argType="string"/>
+        <argument
+            android:name="events"
+            app:argType="string"/>
+        <argument
+            android:name="thumbnail"
+            app:argType="string"/>
+    </fragment>
 
 </navigation>

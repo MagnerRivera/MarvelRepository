@@ -22,7 +22,14 @@
     <string name="character">Personajes</string>
     <string name="name_character">Nombre del personaje</string>
     <string name="search_characters">Buscar Personajes</string>
-    <string name="empty_title">No hay personajes en la base de datos</string>
+    <string name="empty_title">No hay personajes con ese nombre</string>
     <string name="add_character">Personajes agregados</string>
     <string name="empty_wifi">No hay conexión a internet</string>
+    <string name="loading_characters">Cargando los personajes</string>
+    <string name="detail_character">Detalle del personaje</string>
+    <string name="description">Descripción</string>
+    <string name="commits">Commits:</string>
+    <string name="number_commits">100</string>
+    <string name="series">Series:</string>
+    <string name="events">Eventos:</string>
 </resources>

@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintVertical_bias="0.3" />
 
         <ImageView
             android:id="@+id/favorite"
@@ -31,22 +31,11 @@
             android:layout_height="30dp"
             android:layout_marginEnd="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_favorite"
+            android:src="@drawable/ic_add"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/imagePhoto"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
-        <ImageView
-            android:id="@+id/favorite_seleted"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="5dp"
-            android:scaleType="centerCrop"
-            android:visibility="invisible"
-            android:src="@drawable/ic_favorite_seleted"
-            app:layout_constraintBottom_toTopOf="@+id/imagePhoto"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/txtCharacterName"
