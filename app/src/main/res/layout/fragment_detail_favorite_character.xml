@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/favorite_seleted_detail"
+            app:layout_constraintEnd_toStartOf="@+id/favorite_clear"
             app:layout_constraintStart_toEndOf="@+id/imageClose"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -45,15 +45,14 @@
         </androidx.appcompat.widget.Toolbar>
 
         <ImageView
-            android:id="@+id/favorite_seleted_detail"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/favorite_clear"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
             android:layout_marginEnd="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_favorite_seleted"
+            android:src="@drawable/ic_clear"
             app:layout_constraintBottom_toBottomOf="@+id/toolbarCharacter"
             app:layout_constraintEnd_toStartOf="@+id/guidelineLoginRight"
-            app:layout_constraintStart_toEndOf="@+id/toolbarCharacter"
             app:layout_constraintTop_toTopOf="parent"  />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -63,7 +62,6 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_close"
             app:civ_circle_background_color="@color/green"
-            app:layout_constraintEnd_toStartOf="@+id/toolbarCharacter"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guidelineLoginLeft"
             app:layout_constraintTop_toTopOf="parent" />
@@ -130,7 +128,6 @@
                 app:layout_constraintTop_toBottomOf="@id/linearName" />
 
         </LinearLayout>
-
 
         <View
             android:id="@+id/topLine"

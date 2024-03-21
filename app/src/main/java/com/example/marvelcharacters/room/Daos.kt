@@ -1,6 +1,7 @@
 package com.example.marvelcharacters.room
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -18,7 +19,13 @@ interface FavoriteCharacterDao {
     @Insert
     fun insert(character: FavoriteCharacter)
 
+    @Delete
+    fun delete(character: FavoriteCharacter)
+
     @Query("SELECT * FROM favorite_characters WHERE name = :name")
     fun getFavoriteCharacterByName(name: String): FavoriteCharacter?
+
+    @Query("SELECT * FROM favorite_characters")
+    fun getAllFavoriteCharacters(): List<FavoriteCharacter>
 
 }

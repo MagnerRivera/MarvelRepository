@@ -16,41 +16,39 @@
     </fragment>
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.marvelcharacters.fragments.options.ProfileFragment"
-        android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/favoriteCharactersFragment"
-        android:name="com.example.marvelcharacters.fragments.options.FavoriteCharactersFragment"
-        android:label="AddCharacterFragment"
-        tools:layout="@layout/fragment_favorite_characters"/>
-    <fragment
         android:id="@+id/detailChracterFragment"
         android:name="com.example.marvelcharacters.fragments.options.DetailChracterFragment"
         android:label="DetailChracterFragment"
         tools:layout="@layout/fragment_detail_character">
         <argument
-            android:name="name"
-            app:argType="string"/>
-        <argument
-            android:name="description"
-            app:argType="string"/>
-        <argument
-            android:name="commits"
-            app:argType="string"/>
-        <argument
-            android:name="series"
-            app:argType="string"/>
-        <argument
-            android:name="story"
-            app:argType="string"/>
-        <argument
-            android:name="events"
-            app:argType="string"/>
-        <argument
-            android:name="thumbnail"
-            app:argType="string"/>
+            android:name="character"
+            app:argType="com.example.marvelcharacters.retrofit.MarvelCharacter" />
     </fragment>
+
+    <fragment
+        android:id="@+id/favoriteCharactersFragment"
+        android:name="com.example.marvelcharacters.fragments.options.FavoriteCharactersFragment"
+        android:label="FavoriteCharactersFragment"
+        tools:layout="@layout/fragment_favorite_characters">
+        <action
+            android:id="@+id/action_favoriteCharactersFragment_to_detailFavoriteCharacterFragment"
+            app:destination="@id/detailFavoriteCharacterFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFavoriteCharacterFragment"
+        android:name="com.example.marvelcharacters.fragments.options.DetailFavoriteCharacterFragment"
+        android:label="DetailFavoriteCharacterFragment"
+        tools:layout="@layout/fragment_detail_favorite_character">
+        <argument
+            android:name="character"
+            app:argType="com.example.marvelcharacters.room.FavoriteCharacter" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.marvelcharacters.fragments.options.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

@@ -1,7 +1,10 @@
 package com.example.marvelcharacters.fragments.options
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -44,8 +47,8 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initializeViews()
         fetchData()
     }
@@ -64,32 +67,25 @@ class HomeFragment : Fragment() {
         rvCharacters.visibility = View.INVISIBLE
 
         characterAdapter = CharacterAdapter(charactersList,
-            { character, imageUrl ->
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailChracterFragment(
-                    character.name,
-                    character.description,
-                    character.comics.available.toString(),
-                    character.series.available.toString(),
-                    character.stories.available.toString(),
-                    character.events.available.toString(),
-                    imageUrl
-                )
+            { character, _ ->
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToDetailChracterFragment(character)
                 findNavController().navigate(action)
             },
             { character ->
-                val success = viewModel.addToFavorites(
-                    character.name,
-                    character.description,
-                    character.comics.available.toString(),
-                    character.series.available.toString(),
-                    character.stories.available.toString(),
-                    character.events.available.toString(),
-                    generateThumbnailUrl(character)
-                )
+                val success = viewModel.addToFavorites(character)
                 if (success) {
-                    Toast.makeText(requireContext(), "Personaje agregado a favoritos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Personaje agregado a favoritos",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
-                    Toast.makeText(requireContext(), "Error al agregar el personaje a favoritos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Error al agregar el personaje a favoritos",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         )
@@ -141,22 +137,21 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun generateThumbnailUrl(character: MarvelCharacter): String {
-        val path = character.thumbnail.path
-        val extension = character.thumbnail.extension
-        val imageUrl = "$path.$extension"
-        Log.d("HomeFragment", "Generated thumbnail URL: $imageUrl")
-        return imageUrl
-    }
-
-
     private fun fetchData() {
+        if (isNetworkAvailable()) {
+            loadCharacters()
+        } else {
+            showNoInternetMessage()
+        }
+    }
+    private fun loadCharacters() {
         viewModel.fetchAllCharacters()
         viewModel.characters.observe(viewLifecycleOwner) { characters ->
             characters?.let {
+                val previousSize = charactersList.size
                 charactersList = it
                 characterAdapter.characters = it
-                characterAdapter.notifyDataSetChanged()
+                characterAdapter.notifyItemRangeInserted(previousSize, characters.size - previousSize)
             }
 
             progressBar.visibility = View.INVISIBLE
@@ -166,6 +161,27 @@ class HomeFragment : Fragment() {
             isFetchingData = false
         }
     }
+    private fun showNoInternetMessage() {
+        Toast.makeText(
+            requireContext(),
+            "No hay conexión a Internet. Intentando de nuevo...",
+            Toast.LENGTH_SHORT
+        ).show()
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            if (isNetworkAvailable()) {
+                loadCharacters()
+            } else {
+                showNoInternetMessage()
+            }
+        }, 5000)
+    }
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
+    }
 
     private fun filterCharacters(query: String) {
         viewModel.isFiltering = query.isNotEmpty()
@@ -174,6 +190,13 @@ class HomeFragment : Fragment() {
             if (character.name.contains(query, ignoreCase = true)) {
                 filteredList.add(character)
             }
+        }
+        if (filteredList.isEmpty()) {
+            binding.imageEmpty.visibility = View.VISIBLE
+            binding.emptyPhotos.visibility = View.VISIBLE
+        } else {
+            binding.imageEmpty.visibility = View.INVISIBLE
+            binding.emptyPhotos.visibility = View.INVISIBLE
         }
         characterAdapter.characters = filteredList
         characterAdapter.notifyDataSetChanged()

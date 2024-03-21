@@ -44,7 +44,17 @@ class CharacterAdapter(
 
         fun bind(character: MarvelCharacter, imageUrl: String) {
             binding.apply {
+                var formattedNames = ""
+
+                character.comics.items.forEachIndexed { index, item ->
+                    if (index != 0) {
+                        formattedNames += "\n* "
+                    }
+                    formattedNames += item.name
+                }
+
                 txtCharacterName.text = character.name
+
                 Glide.with(itemView)
                     .load(imageUrl)
                     .into(imagePhoto)

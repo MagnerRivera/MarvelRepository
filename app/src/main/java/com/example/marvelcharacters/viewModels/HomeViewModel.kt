@@ -30,7 +30,6 @@ class HomeViewModel @Inject constructor(private val db: MarvelCharactersDatabase
             viewModelScope.launch(Dispatchers.IO) {
                 try {
                     val charactersList = MarvelApi.getCharacters(offset, charactersPerPage)
-                    // Actualiza la lista de personajes en lugar de reemplazarla
                     val updatedList = _characters.value.orEmpty().toMutableList()
                     updatedList.addAll(charactersList)
                     _characters.postValue(updatedList)
@@ -46,31 +45,37 @@ class HomeViewModel @Inject constructor(private val db: MarvelCharactersDatabase
         }
     }
 
-    fun addToFavorites(
-        name: String,
-        description: String,
-        comics: String,
-        series: String,
-        stories: String,
-        events: String,
-        imageUrl: String
-    ): Boolean {
-        val character = FavoriteCharacter(
-            name = name,
-            description = description,
-            comics = comics,
-            series = series,
-            stories = stories,
-            events = events,
-            imageUrl = imageUrl
+    fun addToFavorites(character: MarvelCharacter): Boolean {
+        val favoriteCharacter = FavoriteCharacter(
+            name = character.name,
+            description = character.description,
+            thumbnailPath = character.thumbnail.path,
+            thumbnailExtension = character.thumbnail.extension,
+            comicsAvailable = character.comics.available,
+            comicsCollectionURI = character.comics.collectionURI,
+            comicsItems = character.comics.items,
+            comicsReturned = character.comics.returned,
+            seriesAvailable = character.series.available,
+            seriesCollectionURI = character.series.collectionURI,
+            seriesItems = character.series.items,
+            seriesReturned = character.series.returned,
+            storiesAvailable = character.stories.available,
+            storiesCollectionURI = character.stories.collectionURI,
+            storiesItems = character.stories.items,
+            storiesReturned = character.stories.returned,
+            eventsAvailable = character.events.available,
+            eventsCollectionURI = character.events.collectionURI,
+            eventsItems = character.events.items,
+            eventsReturned = character.events.returned
         )
+
         return try {
             viewModelScope.launch(Dispatchers.IO) {
-                val existingCharacter = db.favoriteCharacterDao().getFavoriteCharacterByName(name)
+                val existingCharacter = db.favoriteCharacterDao().getFavoriteCharacterByName(character.name)
                 if (existingCharacter == null) {
-                    db.favoriteCharacterDao().insert(character)
+                    db.favoriteCharacterDao().insert(favoriteCharacter)
                 } else {
-                    Log.e("HomeViewModel", "El personaje '$name' ya está agregado a favoritos")
+                    Log.e("HomeViewModel", "El personaje '${character.name}' ya está agregado a favoritos")
                 }
             }
             true

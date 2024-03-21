@@ -29,7 +29,8 @@
     <string name="detail_character">Detalle del personaje</string>
     <string name="description">Descripción</string>
     <string name="commits">Commits:</string>
-    <string name="number_commits">100</string>
+    <string name="number_commits">Avengers: The Initiative (2007) #14</string>
     <string name="series">Series:</string>
     <string name="events">Eventos:</string>
+    <string name="stories">Historias:</string>
 </resources>
