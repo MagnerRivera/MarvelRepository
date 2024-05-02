@@ -1,4 +1,4 @@
-En esta aplicación se pueden visualizar los personajes de Marvel que están en el api de Marvel, se realizó la prueba según la documentación presentada por el mismo api: https://developer.marvel.com/docs
+En esta aplicación se pueden visualizar los personajes de Marvel que están en el api de Marvel, me basé en la construcción con la documentcación presentada por el mismo api: https://developer.marvel.com/docs
 
 Componentes de la aplicación:
 * La aplicación tiene una arquitectura MVVM.
